@@ -12,16 +12,18 @@ public class OrgPatterns {
     // org-tsr-regexp-both
     private static final String DT_OR_RANGE = "(" + DT + "(--?-?" + DT + ")?)";
 
+    private static final String FLOAT = "(\d+|\d+\.\d+|\.\d+|\d+\.)";
+    
     public static final Pattern DT_OR_RANGE_P = Pattern.compile(OrgPatterns.DT_OR_RANGE);
 
     //  org-repeat-re
     public static final Pattern REPEAT_P = Pattern.compile(
-            "[0-9]{4,}-[0-9][0-9]-[0-9][0-9] [^>\n]*?([.+]?\\+[0-9]+[hdwmy](/[0-9]+[hdwmy])?)");
+            "[0-9]{4,}-[0-9][0-9]-[0-9][0-9] [^>\n]*?([.+]?\\+" + FLOAT + "[hdwmy](/" + FLOAT + "[hdwmy])?)");
 
-    public static final Pattern TIME_DELAY_P = Pattern.compile("([-]{1,2}+)([0-9]+)([hdwmy])");
+    public static final Pattern TIME_DELAY_P = Pattern.compile("([-]{1,2}+)(" + FLOAT + ")([hdwmy])");
 
     public static final Pattern REPEATER = Pattern.compile(
-            "(([.+]?\\+)([0-9]+)([hdwmy]))(/([0-9]+)([hdwmy]))?");
+            "(([.+]?\\+)(" + FLOAT + ")([hdwmy]))(/(" + FLOAT + ")([hdwmy]))?");
 
     // org-ts-regexp0
     public static final Pattern DT_MAYBE_WITH_TIME_P = Pattern.compile(
